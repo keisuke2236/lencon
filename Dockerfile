@@ -40,18 +40,6 @@ COPY admin/config/bashrc /home/lencon/.bashrc
 
 # ライブラリのインストール
 RUN cd /home/lencon/webapp/ruby && sudo gem install bundler && bundle install
-RUN LC_ALL=C.UTF-8 && LANG=C.UTF-8 && cd /home/lencon/webapp/python && \
-    /home/lencon/.pyenv/shims/pip install -r requirements.txt
-RUN cd /home/lencon/webapp/php && \
-    sudo php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
-    sudo php composer-setup.php && \
-    sudo php -r "unlink('composer-setup.php');" && \
-    sudo php ./composer.phar install
-RUN cd /home/lencon/webapp/nodejs && \
-    sudo npm install
-RUN cd /home/lencon/webapp/crystal && \
-    shards install
-
 COPY docker/start_app.sh /docker/start_app.sh
 
 WORKDIR /home/lencon
