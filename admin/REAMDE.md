@@ -4,20 +4,20 @@ Docker Hubの [automated-build](https://docs.docker.com/docker-hub/builds/#creat
 
 `Dockerfile` とイメージの対応は以下の通り
 
-* `Dockerfile_app`: `ishocon2_app:latest`
-* `Dockerfile_bench`: `ishocon2_bench:latest`
+* `Dockerfile_app`: `lencon2_app:latest`
+* `Dockerfile_bench`: `lencon2_bench:latest`
 
 # 手動でやる場合
 ## アプリケーションイメージ作成手順(メモ)
 ```
-$ docker build -f Dockerfile_app . -t showwin/ishocon2_app:$version
+$ docker build -f Dockerfile_app . -t showwin/lencon2_app:$version
 $ docker login
-$ docker push showwin/ishocon2_app:$version
+$ docker push showwin/lencon2_app:$version
 ```
 
 ## ベンチマーカーイメージ作成手順(メモ)
 ```
-$ docker build -f Dockerfile_bench . -t showwin/ishocon2_bench:$version
+$ docker build -f Dockerfile_bench . -t showwin/lencon2_bench:$version
 $ docker login
-$ docker push showwin/ishocon2_bench:$version
+$ docker push showwin/lencon2_bench:$version
 ```

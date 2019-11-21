@@ -1,2 +1,2 @@
 require_relative './app.rb'
-run Ishocon2::WebApp
+run Lencon2::WebApp

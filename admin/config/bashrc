@@ -4,11 +4,11 @@ export LANG=C.UTF-8
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-export ISHOCON2_DB_HOST=localhost
-export ISHOCON2_DB_PORT=3306
-export ISHOCON2_DB_USER=lencon
-export ISHOCON2_DB_PASSWORD=lencon
-export ISHOCON2_DB_NAME=lencon2
+export LENCON2_DB_HOST=localhost
+export LENCON2_DB_PORT=3306
+export LENCON2_DB_USER=lencon
+export LENCON2_DB_PASSWORD=lencon
+export LENCON2_DB_NAME=lencon2
 
 alias ls='ls --color=auto'
 alias ll='ls -alF'

@@ -3,13 +3,13 @@ require 'mysql2'
 require 'mysql2-cs-bind'
 require 'erubis'
 
-module Ishocon2
+module Lencon2
   class AuthenticationError < StandardError; end
   class PermissionDenied < StandardError; end
 end
 
-class Ishocon2::WebApp < Sinatra::Base
-  session_secret = ENV['ISHOCON2_SESSION_SECRET'] || 'showwin_happy'
+class Lencon2::WebApp < Sinatra::Base
+  session_secret = ENV['LENCON2_SESSION_SECRET'] || 'showwin_happy'
   use Rack::Session::Cookie, key: 'rack.session', secret: session_secret
   set :erb, escape_html: true
   set :public_folder, File.expand_path('../public', __FILE__)
@@ -19,17 +19,17 @@ class Ishocon2::WebApp < Sinatra::Base
     def config
       @config ||= {
         db: {
-          host: ENV['ISHOCON2_DB_HOST'] || 'localhost',
-          port: ENV['ISHOCON2_DB_PORT'] && ENV['ISHOCON2_DB_PORT'].to_i,
-          username: ENV['ISHOCON2_DB_USER'] || 'ishocon',
-          password: ENV['ISHOCON2_DB_PASSWORD'] || 'ishocon',
-          database: ENV['ISHOCON2_DB_NAME'] || 'ishocon2'
+          host: ENV['LENCON2_DB_HOST'] || 'localhost',
+          port: ENV['LENCON2_DB_PORT'] && ENV['LENCON2_DB_PORT'].to_i,
+          username: ENV['LENCON2_DB_USER'] || 'lencon',
+          password: ENV['LENCON2_DB_PASSWORD'] || 'lencon',
+          database: ENV['LENCON2_DB_NAME'] || 'lencon2'
         }
       }
     end
 
     def db
-      return Thread.current[:ishocon2_db] if Thread.current[:ishocon2_db]
+      return Thread.current[:lencon2_db] if Thread.current[:lencon2_db]
       client = Mysql2::Client.new(
         host: config[:db][:host],
         port: config[:db][:port],
@@ -39,7 +39,7 @@ class Ishocon2::WebApp < Sinatra::Base
         reconnect: true
       )
       client.query_options.merge!(symbolize_keys: true)
-      Thread.current[:ishocon2_db] = client
+      Thread.current[:lencon2_db] = client
       client
     end
 

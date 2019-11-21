@@ -4,17 +4,17 @@ require 'mysql2-cs-bind'
 def config
   @config ||= {
     db: {
-      host: ENV['ISHOCON2_DB_HOST'] || 'localhost',
-      port: ENV['ISHOCON2_DB_PORT'] && ENV['ISHOCON2_DB_PORT'].to_i,
-      username: ENV['ISHOCON2_DB_USER'] || 'root',
-      password: ENV['ISHOCON2_DB_PASSWORD'],
-      database: ENV['ISHOCON2_DB_NAME'] || 'ishocon2'
+      host: ENV['LENCON2_DB_HOST'] || 'localhost',
+      port: ENV['LENCON2_DB_PORT'] && ENV['LENCON2_DB_PORT'].to_i,
+      username: ENV['LENCON2_DB_USER'] || 'root',
+      password: ENV['LENCON2_DB_PASSWORD'],
+      database: ENV['LENCON2_DB_NAME'] || 'lencon2'
     }
   }
 end
 
 def db
-  return Thread.current[:ishocon2_db] if Thread.current[:ishocon2_db]
+  return Thread.current[:lencon2_db] if Thread.current[:lencon2_db]
   client = Mysql2::Client.new(
     host: config[:db][:host],
     port: config[:db][:port],
@@ -24,7 +24,7 @@ def db
     reconnect: true
   )
   client.query_options.merge!(symbolize_keys: true)
-  Thread.current[:ishocon2] = client
+  Thread.current[:lencon2] = client
   client
 end
 
