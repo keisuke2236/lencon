@@ -1,0 +1,22 @@
+version: '3.0'
+services:
+  app:
+    image: showwin/ishocon2_app:latest
+    command: /docker/start_app.sh
+    volumes:
+      - storage_app:/var/lib/mysql
+      - ./webapp:/home/ishocon/webapp
+    ports:
+      - "443:443"
+
+  bench:
+    image: showwin/ishocon2_bench:latest
+    command: /docker/start_bench.sh
+    volumes:
+      - storage_bench:/var/lib/mysql
+    links:
+      - app
+
+volumes:
+  storage_bench:
+  storage_app:
